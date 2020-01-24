@@ -16,6 +16,7 @@ class Gawe extends StatefulWidget {
 
 class _GaweState extends State<Gawe> {
   var _questionsIndex = 0;
+  var _totalScore  = 0;
 
   final _questions = const [
     {
@@ -46,7 +47,9 @@ class _GaweState extends State<Gawe> {
     },
   ];
 
-  void _answerQuestion() {
+  void _answerQuestion(int score) {
+    _totalScore += score;
+
     setState(() {
       _questionsIndex = _questionsIndex + 1;
     });
@@ -65,7 +68,7 @@ class _GaweState extends State<Gawe> {
                 questionsIndex: _questionsIndex,
                 questions: _questions,
               )
-            : Result(),
+            : Result(_totalScore),
       ),
     );
   }
